@@ -1555,8 +1555,8 @@ consistent!(sgf_2, r"\r\n|\n\r|\n|\r");
 // sgf-0.1.5: r"([\]\\:])"
 consistent!(sgf_3, r"([\]\\:])");
 
-// dok-0.2.0: "^Bearer realm=\"(.+?)\",service=\"(.+?)\",scope=\"(.+?)\"$"
-consistent!(dok_0, "^Bearer realm=\"(.+?)\",service=\"(.+?)\",scope=\"(.+?)\"$");
+// dok-0.2.0: "^Bearer realm=\"(.+?)\",service=\"(.+?)\",scope=\"(.+?)\"\\"
+consistent!(dok_0, "^Bearer realm=\"(.+?)\",service=\"(.+?)\",scope=\"(.+?)\"\\");
 
 // d20-0.1.0: r"([+-]?\s*\d+[dD]\d+|[+-]?\s*\d+)"
 consistent!(d20_0, r"([+-]?\s*\d+[dD]\d+|[+-]?\s*\d+)");

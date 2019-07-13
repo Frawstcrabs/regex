@@ -19,7 +19,7 @@ pub fn expand_str(
             }
         }
         if replacement.as_bytes().get(1).map_or(false, |&b| b == b'\\') {
-            dst.push_str("$");
+            dst.push_str("\\");
             replacement = &replacement[2..];
             continue;
         }
@@ -27,7 +27,7 @@ pub fn expand_str(
         let cap_ref = match find_cap_ref(replacement) {
             Some(cap_ref) => cap_ref,
             None => {
-                dst.push_str("$");
+                dst.push_str("\\");
                 replacement = &replacement[1..];
                 continue;
             }
@@ -210,7 +210,7 @@ mod tests {
     find!(find_cap_ref8, "${42");
     find!(find_cap_ref9, "${42 ");
     find!(find_cap_ref10, " $0 ");
-    find!(find_cap_ref11, "$");
+    find!(find_cap_ref11, "\\");
     find!(find_cap_ref12, " ");
     find!(find_cap_ref13, "");
     find!(find_cap_ref14, "$1-$2", c!(1,2));

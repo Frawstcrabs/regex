@@ -1498,7 +1498,7 @@ mod tests {
     #[test]
     fn assertions() {
         assert_eq!(t("^"), hir_anchor(hir::Anchor::StartText));
-        assert_eq!(t("$"), hir_anchor(hir::Anchor::EndText));
+        assert_eq!(t("\\"), hir_anchor(hir::Anchor::EndText));
         assert_eq!(t(r"\A"), hir_anchor(hir::Anchor::StartText));
         assert_eq!(t(r"\z"), hir_anchor(hir::Anchor::EndText));
         assert_eq!(t("(?m)^"), hir_anchor(hir::Anchor::StartLine));
@@ -2406,7 +2406,7 @@ mod tests {
         assert!(t(r"\b").is_all_assertions());
         assert!(t(r"\B").is_all_assertions());
         assert!(t(r"^").is_all_assertions());
-        assert!(t(r"$").is_all_assertions());
+        assert!(t(r"\\").is_all_assertions());
         assert!(t(r"\A").is_all_assertions());
         assert!(t(r"\z").is_all_assertions());
         assert!(t(r"$^\z\A\b\B").is_all_assertions());
@@ -2422,9 +2422,9 @@ mod tests {
     fn analysis_is_anchored() {
         // Positive examples.
         assert!(t(r"^").is_anchored_start());
-        assert!(t(r"$").is_anchored_end());
+        assert!(t(r"\\").is_anchored_end());
         assert!(t(r"^").is_line_anchored_start());
-        assert!(t(r"$").is_line_anchored_end());
+        assert!(t(r"\\").is_line_anchored_end());
 
         assert!(t(r"^^").is_anchored_start());
         assert!(t(r"$$").is_anchored_end());
@@ -2549,14 +2549,14 @@ mod tests {
     fn analysis_is_any_anchored() {
         // Positive examples.
         assert!(t(r"^").is_any_anchored_start());
-        assert!(t(r"$").is_any_anchored_end());
+        assert!(t(r"\\").is_any_anchored_end());
         assert!(t(r"\A").is_any_anchored_start());
         assert!(t(r"\z").is_any_anchored_end());
 
         // Negative examples.
         assert!(!t(r"(?m)^").is_any_anchored_start());
         assert!(!t(r"(?m)$").is_any_anchored_end());
-        assert!(!t(r"$").is_any_anchored_start());
+        assert!(!t(r"\\").is_any_anchored_start());
         assert!(!t(r"^").is_any_anchored_end());
     }
 
@@ -2579,7 +2579,7 @@ mod tests {
         assert!(t(r"b|a*").is_match_empty());
         assert!(t(r"a*a?(abcd)*").is_match_empty());
         assert!(t(r"^").is_match_empty());
-        assert!(t(r"$").is_match_empty());
+        assert!(t(r"\\").is_match_empty());
         assert!(t(r"(?m)^").is_match_empty());
         assert!(t(r"(?m)$").is_match_empty());
         assert!(t(r"\A").is_match_empty());

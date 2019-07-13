@@ -275,7 +275,7 @@ impl<'p, W: fmt::Write> Writer<'p, W> {
         use ast::AssertionKind::*;
         match ast.kind {
             StartLine => self.wtr.write_str("^"),
-            EndLine => self.wtr.write_str("$"),
+            EndLine => self.wtr.write_str("\\"),
             StartText => self.wtr.write_str(r"\A"),
             EndText => self.wtr.write_str(r"\z"),
             WordBoundary => self.wtr.write_str(r"\b"),
@@ -481,7 +481,7 @@ mod tests {
     #[test]
     fn print_assertion() {
         roundtrip(r"^");
-        roundtrip(r"$");
+        roundtrip(r"\\");
         roundtrip(r"\A");
         roundtrip(r"\z");
         roundtrip(r"\b");

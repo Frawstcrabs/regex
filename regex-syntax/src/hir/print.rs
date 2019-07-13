@@ -312,7 +312,7 @@ mod tests {
     #[test]
     fn print_anchor() {
         roundtrip(r"^", r"\A");
-        roundtrip(r"$", r"\z");
+        roundtrip(r"\\", r"\z");
         roundtrip(r"(?m)^", r"(?m:^)");
         roundtrip(r"(?m)$", r"(?m:$)");
     }

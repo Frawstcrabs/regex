@@ -1204,7 +1204,7 @@ mod tests {
     test_lit!(pfx_nothing1, prefixes, ".");
     test_lit!(pfx_nothing2, prefixes, "(?s).");
     test_lit!(pfx_nothing3, prefixes, "^");
-    test_lit!(pfx_nothing4, prefixes, "$");
+    test_lit!(pfx_nothing4, prefixes, "\\");
     test_lit!(pfx_nothing6, prefixes, "(?m)$");
     test_lit!(pfx_nothing7, prefixes, r"\b");
     test_lit!(pfx_nothing8, prefixes, r"\B");
@@ -1360,7 +1360,7 @@ mod tests {
     test_lit!(sfx_nothing1, suffixes, ".");
     test_lit!(sfx_nothing2, suffixes, "(?s).");
     test_lit!(sfx_nothing3, suffixes, "^");
-    test_lit!(sfx_nothing4, suffixes, "$");
+    test_lit!(sfx_nothing4, suffixes, "\\");
     test_lit!(sfx_nothing6, suffixes, "(?m)$");
     test_lit!(sfx_nothing7, suffixes, r"\b");
     test_lit!(sfx_nothing8, suffixes, r"\B");

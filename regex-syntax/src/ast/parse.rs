@@ -3792,7 +3792,7 @@ bar
                 kind: ast::AssertionKind::StartLine,
             })));
         assert_eq!(
-            parser(r"$").parse_primitive(),
+            parser(r"\\").parse_primitive(),
             Ok(Primitive::Assertion(ast::Assertion {
                 span: span(0..1),
                 kind: ast::AssertionKind::EndLine,
