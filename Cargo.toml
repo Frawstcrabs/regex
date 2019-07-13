@@ -36,16 +36,6 @@ regex-syntax = { path = "regex-syntax", version = "0.6.6" }
 # For compiling UTF-8 decoding into automata.
 utf8-ranges = "1.0.1"
 
-[dev-dependencies]
-# For examples.
-lazy_static = "1"
-# For property based tests.
-quickcheck = { version = "0.8", default-features = false }
-# For generating random test data.
-rand = "0.7.0"
-# To check README's example
-doc-comment = "0.3"
-
 [features]
 default = ["use_std"]
 # The 'use_std' feature permits the regex crate to use the standard library.
