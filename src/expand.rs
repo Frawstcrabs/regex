@@ -11,14 +11,14 @@ pub fn expand_str(
     dst: &mut String,
 ) {
     while !replacement.is_empty() {
-        match memchr(b'$', replacement.as_bytes()) {
+        match memchr(b'\\', replacement.as_bytes()) {
             None => break,
             Some(i) => {
                 dst.push_str(&replacement[..i]);
                 replacement = &replacement[i..];
             }
         }
-        if replacement.as_bytes().get(1).map_or(false, |&b| b == b'$') {
+        if replacement.as_bytes().get(1).map_or(false, |&b| b == b'\\') {
             dst.push_str("$");
             replacement = &replacement[2..];
             continue;
@@ -53,15 +53,15 @@ pub fn expand_bytes(
     dst: &mut Vec<u8>,
 ) {
     while !replacement.is_empty() {
-        match memchr(b'$', replacement) {
+        match memchr(b'\\', replacement) {
             None => break,
             Some(i) => {
                 dst.extend(&replacement[..i]);
                 replacement = &replacement[i..];
             }
         }
-        if replacement.get(1).map_or(false, |&b| b == b'$') {
-            dst.push(b'$');
+        if replacement.get(1).map_or(false, |&b| b == b'\\') {
+            dst.push(b'\\');
             replacement = &replacement[2..];
             continue;
         }
@@ -69,7 +69,7 @@ pub fn expand_bytes(
         let cap_ref = match find_cap_ref(replacement) {
             Some(cap_ref) => cap_ref,
             None => {
-                dst.push(b'$');
+                dst.push(b'\\');
                 replacement = &replacement[1..];
                 continue;
             }
@@ -130,7 +130,7 @@ fn find_cap_ref<T: ?Sized + AsRef<[u8]>>(
 ) -> Option<CaptureRef> {
     let mut i = 0;
     let rep: &[u8] = replacement.as_ref();
-    if rep.len() <= 1 || rep[0] != b'$' {
+    if rep.len() <= 1 || rep[0] != b'\\' {
         return None;
     }
     let mut brace = false;
