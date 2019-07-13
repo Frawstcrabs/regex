@@ -42,7 +42,7 @@ lazy_static = "1"
 # For property based tests.
 quickcheck = { version = "0.8", default-features = false }
 # For generating random test data.
-rand = "0.6.5"
+rand = "0.7.0"
 # To check README's example
 doc-comment = "0.3"
 
