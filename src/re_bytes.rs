@@ -1135,7 +1135,7 @@ impl<'a> Replacer for &'a [u8] {
     }
 
     fn no_expansion(&mut self) -> Option<Cow<[u8]>> {
-        match memchr(b'$', *self) {
+        match memchr(b'\\', *self) {
             Some(_) => None,
             None => Some(Cow::Borrowed(*self)),
         }
